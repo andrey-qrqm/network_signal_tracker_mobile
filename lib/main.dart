@@ -202,6 +202,8 @@ class _CoordinateScreenState extends State<CoordinateScreen> {
                   )
                       : LineChart(
                     LineChartData(
+                      maxY: 200,
+                      minY: -150,
                       lineBarsData: [
                         LineChartBarData(
                           spots: measurements.map((m) =>
@@ -222,6 +224,30 @@ class _CoordinateScreenState extends State<CoordinateScreen> {
                           dotData: FlDotData(show: false),
                         ),
                       ],
+                      lineTouchData: LineTouchData(
+                        enabled: true,
+                        touchTooltipData: LineTouchTooltipData(
+                          tooltipBgColor: Colors.black87,
+                          getTooltipItems: (touchedSpots) {
+                            return touchedSpots.map((LineBarSpot spot) {
+                              final m = measurements.firstWhere((m) =>
+                              m.timestamp.millisecondsSinceEpoch.toDouble() ==
+                                  spot.x);
+                              final time = DateTime.fromMillisecondsSinceEpoch(m.timestamp.millisecondsSinceEpoch);
+                              return LineTooltipItem(
+                                '${time.hour}:${time.minute.toString().padLeft(2, '0')}:${time.second.toString().padLeft(2, '0')}\n'
+                                    'Ping: ${m.ping} ms\n'
+                                    'dBm: ${m.signalStrength}',
+                                const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'RobotoMono',
+                                ),
+                              );
+                            }).toList();
+                          },
+                        ),
+                      ),
                       titlesData: FlTitlesData(
                         show: true,
                         topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
