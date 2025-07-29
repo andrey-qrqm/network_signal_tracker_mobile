@@ -147,7 +147,7 @@ class _CoordinateScreenState extends State<CoordinateScreen> {
                 onPressed: _toggleTracking,
                 child: Text(_isTracking ? 'Stop Tracking' : 'Start Tracking'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: _isTracking ? Colors.red : Colors.blue,
+                  backgroundColor: _isTracking ? Color(0xFFFF6B6B) : Color(0xFF69D6FF),
                 ),
               ),
               SizedBox(height: 20),
