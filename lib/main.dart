@@ -126,7 +126,7 @@ class _CoordinateScreenState extends State<CoordinateScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF121212),
+      backgroundColor: Color(0xFF1E1E2E),
       appBar: AppBar(
         title: Text(
           'Network Signal Tracker',
@@ -136,7 +136,7 @@ class _CoordinateScreenState extends State<CoordinateScreen> {
             color: Colors.lightBlueAccent,
           ),
         ),
-        backgroundColor: Color(0xFF1E1E2E),
+        backgroundColor: Color(0xFF12122E),
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -151,9 +151,26 @@ class _CoordinateScreenState extends State<CoordinateScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              Text(_status),
+              Text(
+                _status,
+                style: TextStyle(
+                  fontFamily: 'RobotoMono',
+                  fontSize: 14,
+                  color: Colors.white70,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
               SizedBox(height: 40),
-              Text("Ping and dBm"),
+              Text(
+                "Ping and dBm",
+                style: TextStyle(
+                  fontFamily: 'RobotoMono',
+                  fontSize: 18,
+                  color: Colors.lightBlueAccent,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.2,
+                ),
+              ),
               FractionallySizedBox(
                 widthFactor: 0.9, // 80% of screen width
                 child: Container(
@@ -216,11 +233,11 @@ class _CoordinateScreenState extends State<CoordinateScreen> {
                             reservedSize: 42,
                             getTitlesWidget: (value, meta) {
                               return Padding(
-                                padding: const EdgeInsets.only(right: 8.0),
+                                padding: const EdgeInsets.only(right: 8.0, left: 8.0),
                                 child: Text(
                                   value.toStringAsFixed(0),
                                   style: GoogleFonts.robotoMono(
-                                    fontSize: 14,
+                                    fontSize: 10,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.lightBlueAccent,
                                   ),
